@@ -30,8 +30,10 @@ mode = st.radio(
 
 
 def generate_word_download(resume_text, filename="简历.docx"):
-    with tempfile.NamedTemporaryFile(suffix=".docx", delete=False) as tmp:
-        tmp_path = tmp.name
+    import tempfile, os
+    tmp_path = os.path.join(tempfile.gettempdir(), f"resume_{abs(hash(filename))}.docx")
+    if os.path.exists(tmp_path):
+        os.unlink(tmp_path)
     try:
         save_word(resume_text, tmp_path)
         with open(tmp_path, "rb") as f:

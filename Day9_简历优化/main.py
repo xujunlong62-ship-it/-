@@ -446,12 +446,6 @@ def save_questions(text, filename):
             for run in p.runs:
                 set_font(run, size=10, color="4A5568", name=FONT_PRIMARY)
 
-    base_name = filename.rsplit(".docx", 1)[0]
-    filename = base_name + "_面试题库" + ".docx"
-    counter = 1
-    while os.path.exists(filename):
-        filename = base_name + "_面试题库_" + str(counter) + ".docx"
-        counter += 1
     doc.save(filename)
     print("面试题库已保存: " + filename)
 
